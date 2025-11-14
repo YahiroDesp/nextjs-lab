@@ -11,14 +11,21 @@ type RootLayoutProps = { children: ReactNode };
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body>
         <header>
+          {/* Группа навигационных ссылок слева */}
           <nav>
-            <Link href="/">Главная</Link>
-            <Link href="/skins">Скины</Link>
-            <Link href="/agents">Агенты</Link>
+            <Link href="/" className="nav-link">Главная</Link>
+            <Link href="/agents" className="nav-link">Агенты</Link>
+            <Link href="/skins" className="nav-link">Скины</Link>
           </nav>
+          
+          {/* Группа кнопок аутентификации справа */}
+          <div className="auth-buttons">
+            <Link href="/login" className="auth-link">Войти</Link>
+            <Link href="/register" className="auth-link">Регистрация</Link>
+          </div>
         </header>
 
         <main>{children}</main>

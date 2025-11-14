@@ -14,7 +14,65 @@ body, html {
   background-color: #0e0e0e;
   color: #fff;
 }
+/* --- СТИЛИЗАЦИЯ HEADER --- */
+header {
+  background-color: #1b1b1b;
+  padding: 15px 30px;
+  /* Ключевые свойства для разделения */
+  display: flex;
+  justify-content: space-between; /* РАЗДЕЛЯЕТ nav и auth-buttons */
+  align-items: center;
+  /* Остальные стили */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
+header nav {
+  display: flex; /* Выравнивание ссылок "Главная, Агенты, Скины" */
+  gap: 20px; /* Отступы между ссылками */
+}
+
+/* Стили для обычных навигационных ссылок */
+header .nav-link {
+  color: #ff4655;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header .nav-link:hover,
+header .nav-link.active {
+  background-color: #ff4655;
+  color: #fff;
+}
+
+/* Группа кнопок Войти/Регистрация */
+.auth-buttons {
+  display: flex;
+  gap: 10px; /* Отступы между кнопками */
+}
+
+/* Стили для кнопок Войти/Регистрация */
+.auth-link {
+  color: #fff !important; 
+  background-color: #ff4655; 
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem; /* Установил тот же размер, что и у nav-link */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-link:hover {
+  background-color: #ff1a3c;
+  transform: scale(1.05);
+}
 main {
   flex: 1;
   padding: 20px;
@@ -25,7 +83,6 @@ header {
   background-color: #1b1b1b;
   padding: 15px 30px;
   display: flex;
-  justify-content: center;
   gap: 20px;
   align-items: center;
   box-shadow: 0 2px 6px rgba(0,0,0,0.7);
@@ -36,7 +93,6 @@ header {
 
 header nav {
   display: flex;
-  justify-content: center;
   gap: 20px;
 }
 
@@ -69,27 +125,27 @@ header a.active {
 
 /* Карточки агентов и скинов */
 .card {
-  background-color: #121212;
-  border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.7);
-  padding: 20px;
-  width: 300px;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200px;
+  text-decoration: none;
+  color: white;
+  background-color: #121212;
+  padding: 15px;
+  border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: #fff;
   text-align: center;
+  position: relative; /* Текст внутри карточки тоже центрирован */
+  overflow: hidden;
 }
 
 .card img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  width: 190px;
+  height: 240px;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 
 .card:hover {
@@ -103,14 +159,47 @@ header a.active {
 }
 
 .card h3 {
-  margin-top: 10px;
-  font-size: 1.5rem;
   color: #ff4655;
+  margin-top: 10px;
 }
 
+
 .card p {
-  font-size: 1rem;
   color: #ccc;
+  margin: 0;
+}
+.info-icon-button {
+  position: absolute;
+  top: 10px; /* Отступ сверху */
+  right: 10px; /* Отступ справа */
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 70, 85, 0.85); /* Полупрозрачный красный фон */
+  color: white;
+  border-radius: 50%; /* Круглая форма */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none; /* Убираем подчеркивание */
+  cursor: pointer;
+  z-index: 20; /* Поверх изображения */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 2px solid white; /* Добавляем белый ободок для лучшей видимости */
+}
+
+.info-icon-button:hover {
+  background-color: #ff4655; /* Более яркий красный при наведении */
+  transform: scale(1.1);
+}
+.skin-card img {
+  width: 200px;      /* фиксированная ширина карточки */
+  height: auto;      /* высота подстраивается под пропорции изображения */
+  object-fit: contain; /* показывает всю картинку без обрезки */
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background-color: #121212; /* если фон у картинки прозрачный */
 }
 
 /* Баннер */
@@ -120,14 +209,17 @@ header a.active {
   max-height: 400px;
   overflow: hidden;
   border-radius: 12px;
-  margin-bottom: 30px;
+  margin: 40px auto; /* отступ сверху и снизу, центрирование через auto */
+  display: flex;
+  justify-content: center; /* центрирует изображение по горизонтали */
+  align-items: center; /* центрирует изображение по вертикали */
 }
 
 .banner img {
   width: 100%;
-  height: 100%;
+  max-width: 1200px; /* ограничение по ширине, чтобы не растягивалась на больших экранах */
+  height: auto;
   object-fit: cover;
-  filter: brightness(0.5);
 }
 
 .banner-text {
@@ -155,10 +247,11 @@ header a.active {
 /* Информация */
 .info {
   max-width: 800px;
-  margin: 0 auto 40px;
+  margin: 40px auto; /* было 0 auto 40px */
   text-align: center;
   padding: 0 20px;
 }
+
 
 .info h2 {
   font-size: 2rem;
@@ -176,9 +269,10 @@ header a.active {
 .news {
   background: #1a1a1a;
   padding: 20px;
-  margin: 20px 0;
+  margin: 40px 0; /* поставили больше расстояние */
   border-radius: 12px;
 }
+
 
 .news h2 {
   text-align: center;
@@ -189,9 +283,10 @@ header a.active {
 .news-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px; /* было 20px */
   justify-content: center;
 }
+
 
 .news-card {
   background: #2a2a2a;
@@ -200,10 +295,95 @@ header a.active {
   width: 250px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.news-list {
+  display: flex;
+  flex-wrap: wrap; /* если много карточек, переходят на новую строку */
+  gap: 20px;
+  justify-content: center; /* выравнивание по центру */
+}
+
+.news-item {
+  width: 200px; /* ширина карточки */
+  background-color: #121212;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
 
 .news-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 10px 20px rgba(255, 70, 85, 0.5);
+}
+/* Кнопка скрытия/показа новостей */
+.news-toggle {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.news-toggle button {
+  background-color: #ff4655;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.news-toggle button:hover {
+  background-color: #ff1a3c;
+  transform: scale(1.05);
+}
+.center-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;  /* центрируем все карточки */
+  align-items: center;
+  margin-top: 20px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* центрирует все карточки */
+  align-items: center; /* вертикально центрирует элементы внутри строки */
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  width: 100%;
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  margin: 40px 0 20px;
+}
+
+
+.abilities {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #ff4655; /* разделитель сверху */
+}
+
+.ability {
+  margin-bottom: 15px;
+  text-align: left; /* выравнивание текста слева */
+}
+
+.ability h4 {
+  font-size: 1.1rem;
+  color: #ff4655;
+  margin-bottom: 5px;
+}
+
+.ability p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.5; /* увеличенное межстрочное расстояние */
 }
 
 .close-news {
